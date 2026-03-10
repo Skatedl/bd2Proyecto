@@ -16,5 +16,13 @@
     "url": "https://github.com/Skatedl/bd2Proyecto/issues"
   },
   "homepage": "https://github.com/Skatedl/bd2Proyecto#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.19.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }
