@@ -1,5 +1,5 @@
-import Navbar from "../componentes/navbar";
-import Footer from "../componentes/footer";
+import Navbar from "./navbar";
+import Footer from "./footer";
 
 export function Perfil () {
     return (
