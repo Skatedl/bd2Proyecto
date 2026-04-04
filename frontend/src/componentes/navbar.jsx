@@ -14,13 +14,27 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const cerrarSesion = () => {
-        navigate("/");
-    };
-
 export default function Navbar() {
   const navigate = useNavigate();
-  const cerrarSesion = () => {
+
+  const cerrarSesion = async () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        await fetch("http://localhost:3001/logout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token })
+        });
+      } catch (error) {
+        console.error("Error al cerrar sesión en el servidor:", error);
+      }
+    }
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("nombreUsuario"); 
+
     navigate("/");
   };
 

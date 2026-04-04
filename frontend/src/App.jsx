@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./paginas/login";
 import Home from "./paginas/home";
-import { Perfil } from "./componentes/perfil";
+import { Perfil } from "./paginas/perfil";
 
 function App() {
   return (

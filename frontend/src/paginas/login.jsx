@@ -10,26 +10,29 @@ function Login() {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
 
-        const response = await fetch("http://localhost:3001/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                cedula,
-                password
-            })
-        });
+        try {
+            const response = await fetch("http://localhost:3001/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    cedula,
+                    password
+                })
+            });
 
-        const data = await response.json();
-
-        if (data.login) {
-            navigate("/home");
-        } else {
-            alert("Usuario o contraseña incorrecta");
+            const data = await response.json();
+            if (data.login) {
+                localStorage.setItem("token", data.token);
+                navigate("/home");
+            } else {
+                alert("Usuario o contraseña incorrecta");
+            }
+        } catch (error) {
+            console.error("Error en la conexión:", error);
         }
     };
 
@@ -56,9 +59,7 @@ function Login() {
                             type="number"
                             placeholder="Ingrese su identificación"
                             onChange={(e) => setCedula(e.target.value)}
-                            className="w-full p-3 rounded-lg bg-gray-700 text-white 
-          placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border 
-          border-gray-600"
+                            className="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600"
                         />
                     </div>
                     <div>
@@ -69,15 +70,12 @@ function Login() {
                             type="password"
                             placeholder="Ingrese su contraseña"
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full p-3 rounded-lg bg-gray-700 text-white 
-          placeholder-gray-400 focus:outline-none focus:ring-2 
-          focus:ring-blue-500 border border-gray-600"
+                            className="w-full p-3 rounded-lg bg-gray-700 text-white  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600"
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 transition duration-300 
-        text-white font-semibold p-3 rounded-lg shadow-md"
+                        className="w-full bg-blue-600 hover:bg-blue-700 transition duration-300 text-white font-semibold p-3 rounded-lg shadow-md"
                     >
                         Ingresar
                     </button>
