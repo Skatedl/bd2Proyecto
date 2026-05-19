@@ -80,7 +80,6 @@ function Login() {
                         Ingresar
                     </button>
                 </form>
-
             </div>
         </div>
     );
